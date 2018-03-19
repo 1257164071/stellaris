@@ -154,7 +154,7 @@ EOT;
                 'permis_id' => $val,
                 'permis_name' => Db::table('menu')->where(['id' => $val])->value('f_fullname')
             );
-//            dump($data);die;
+//            dump($data);die;21
             Db::table('role_menu')->insert($data);
         }
         $this->redirect('Index/permis_index');
