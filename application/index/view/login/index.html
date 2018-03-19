@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>安检企业后台</title>
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+
+<body class="login-body">
+
+<div class="container">
+
+
+    <div class="form-signin" style="margin-top: 16%">
+        <div class="form-signin-heading text-center">
+            <h1 class="sign-title">企业端登录</h1>
+        </div>
+        <div class="login-wrap" id="login_form">
+            <input type="text" class="form-control" v-model="user_mobile" placeholder="用户名" autofocus>
+            <input type="password" class="form-control" v-model="user_password" placeholder="密码">
+            <button class="btn btn-lg btn-login btn-block" type="button" v-on:click="greet">
+                <i class="fa fa-check"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Forgot Password ?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Enter your e-mail address below to reset your password.</p>
+                    <input type="text" name="email" placeholder="Email" autocomplete="off"
+                           class="form-control placeholder-no-fix">
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                    <button class="btn btn-primary" type="button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+
+
+</div>
+
+
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__layer/layer.js"></script>
+<script>
+    var login_form = new Vue({
+        el: '#login_form',
+        data: {
+            user_mobile : '',
+            user_password: ''
+        },
+        methods: {
+            greet: function (event) {
+                data = {
+                    'user_mobile': login_form.user_mobile ,
+                    'user_password': login_form.user_password
+                };
+                $.ajax({
+                    url: "{:url('Login/login_check')}",
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+
+                        if (data.flag == 'Success') {
+
+                            layer.confirm('登录成功', {
+                                btn: ['确定'] //可以无限个按钮
+
+                            }, function (index, layero) {
+                                window.location.href = "{:url('Index/index')}"
+                            });
+                        } else {
+                            layer.open({
+                                title: '系统通知'
+                                , content: '用户名或密码错误'
+                            });
+                        }
+                    },
+                    error: function () {
+                        layer.open({
+                            title: '系统通知'
+                            , content: '服务器连接失败'
+                        });
+                    }
+                })
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

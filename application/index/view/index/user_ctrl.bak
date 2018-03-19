@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>用户管理</title>
+
+    <!--dynamic table-->
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css" />
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- header section start-->
+        <!-- header section end-->
+
+        <!-- page heading start-->
+
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div style="display: none" class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Dynamic Table
+                            <span class="tools pull-right">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>用户名</th>
+                                        <th>性别</th>
+                                        <th>所属企业</th>
+                                        <th class="hidden-phone">用户职位</th>
+                                        <th class="hidden-phone">所属管辖</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="gradeX">
+                                        <td>Trident</td>
+                                        <td>Internet
+                                            Explorer 4.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center hidden-phone">4</td>
+                                        <td class="center hidden-phone">X</td>
+                                        <td class="center hidden-phone">X</td>
+                                        <td class="center hidden-phone">X</td>
+                                    </tr>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            保险单管理
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table class="display table table-bordered" id="hidden-table-info">
+                                    <thead>
+                                    <tr v-html="thead">
+                                    </tr>
+                                    </thead>
+                                    <tbody v-html="tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+    </div>
+    <!-- main content end-->
+</section>
+<input id="table_url" value="{:url('index/test')}">
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript" src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+<!-- layer -->
+<script src="__ADMINEX__/layer/layer.js"></script>
+<script>
+    var res = {$res};
+    var data = {$data};
+    var thead = "<tr>";
+    thead += '<th style="display: none">ID</th>';
+    for (var i = 1; i<res.length;i++){
+        thead+="<th>"+res[i]['table_row_name']+"</th>";
+    }
+    var tbody = '';
+    for (var j = 0;j<data.length;j++){
+        tbody+="<tr class=\"gradeX\">";
+            for (var k=0;k<res.length;k++){
+                if(k==0){
+                    tbody += '<td style="display: none">'+data[j]['id']+'</td>';
+                    continue;
+                }
+                tbody+='<td>'+ data[j][res[k]['table_row']]+'</td>';
+            }
+            tbody +="</tr>";
+    }
+    var tb = new Vue({
+        el:'#hidden-table-info',
+        data:{
+            thead:thead,
+            tbody:tbody
+        }
+    })
+
+</script>
+</body>
+</html>
