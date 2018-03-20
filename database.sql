@@ -11,29 +11,62 @@ CREATE TABLE table_show (
 
 
 CREATE TABLE menu (
-  id               INT PRIMARY KEY AUTO_INCREMENT
+  `id`               INT(11)     NOT NULL AUTO_INCREMENT
   COMMENT '左侧菜单',
-  f_moduleId       CHAR(80) COMMENT 'id',
-  f_parentid       CHAR(80) COMMENT '父亲',
-  f_fullname       CHAR(80) COMMENT '名称',
-  f_icon           CHAR(80) COMMENT '图标',
-  f_urladdress     CHAR(80) COMMENT '',
-  f_target         CHAR(80) COMMENT 'expand',
-  f_ismenu         CHAR(80) COMMENT '0',
-  f_allowexpand    CHAR(80) COMMENT '1',
-  f_ispublic       CHAR(80) COMMENT '0',
-  f_allowedit      CHAR(80) COMMENT '',
-  f_allowdelete    CHAR(80) COMMENT '',
-  f_sortcode       CHAR(80) COMMENT '1',
-  f_deletemark     CHAR(80) COMMENT '0',
-  f_enabledmark    CHAR(80) COMMENT '',
-  f_description    CHAR(80) COMMENT '',
-  f_createdate     CHAR(80) COMMENT '',
-  f_createuserid   CHAR(80) COMMENT '',
-  f_createusername CHAR(80) COMMENT '',
-  f_modifydate     DATETIME COMMENT '',
-  f_modifyuserid   CHAR(80) COMMENT '',
-  f_modifyusername CHAR(80) COMMENT '',
+  `f_moduleid`       CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT 'id',
+  `f_parentid`       CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '父亲',
+  `f_encode`         CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT 'SysManage',
+  `f_fullname`       CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '名称',
+  `f_icon`           CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '图标',
+  `f_urladdress`     CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_target`         CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT 'expand',
+  `f_ismenu`         CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '0',
+  `f_allowexpand`    CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '1',
+  `f_ispublic`       CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '0',
+  `f_allowedit`      CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_allowdelete`    CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_sortcode`       CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '1',
+  `f_deletemark`     CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
+  COMMENT '0',
+  `f_enabledmark`    CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_description`    CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_createdate`     CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_createuserid`   CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_createusername` CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_modifydate`     DATETIME(0) NULL     DEFAULT NULL,
+  `f_modifyuserid`   CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL,
+  `f_modifyusername` CHAR(80) CHARACTER SET utf8
+  COLLATE utf8_general_ci        NULL     DEFAULT NULL
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
