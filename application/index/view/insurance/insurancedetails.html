@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>保单操作</title>
+
+    <!--dynamic table-->
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content">
+
+        <!-- header section start-->
+        <!-- header section end-->
+
+        <!-- page heading start-->
+
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            保单审核
+                            <span class="tools pull-right">
+
+                            {if condition="$info.insurance_type != 4"}<a href="javascript:submit_check()"
+                                                                         class="fb">审核</a>{/if}
+                            <a href="{:url('Insurance/insuranceList')};" class="fb">返回</a>
+                            </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" id="signupForm" method="post"
+                                      action="{:url('Insurance/insuranceConfirm')}?bill_no={$info.bill_no}">
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">订单号</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.bill_no}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">年度</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.year_no}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">企业代码</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.org_code}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">企业名称</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.org_name}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">公司地址</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.org_address}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">保险名称</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_name}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">购买人数</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.buy_punm}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">累计限额</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_quota}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">基础保险费</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_baseamt}"/>
+                                        </div>
+                                    </div>
+                                    {if condition="$info.insurance_type = 1"}
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">单价</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_price}"/>
+                                        </div>
+                                    </div>
+                                    {/if}
+                                    {if condition="$info.insurance_type = 3"}
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">每200人增加的保险价格</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_raiseprice}"/>
+                                        </div>
+                                    </div>
+                                    {/if}
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">保单总额</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_amt}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">保单备注</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.insurance_remark}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">创建时间</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$info.create_date}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">保单浮动</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="bdfd" name="insurance_float" type="text"
+                                                   value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">实际总额</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="sjje" name="insurance_real_amt" type="text"
+                                                   value=""/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+
+
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+    </section>
+
+    <script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+    <script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="__ADMINEX__js/bootstrap.min.js"></script>
+    <script src="__ADMINEX__js/modernizr.min.js"></script>
+    <script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+    <!--dynamic table-->
+    <script type="text/javascript" language="javascript"
+            src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+    <!--dynamic table initialization -->
+    <script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+    <!--common scripts for all pages-->
+    <script src="__ADMINEX__js/scripts.js"></script>
+    <script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+    <!-- layer -->
+    <script src="__ADMINEX__/layer/layer.js"></script>
+    <script>
+        function submit_check() {
+            if ($('#bdfd').val() == null || $('#bdfd').val() == '') {
+                layer.open({
+                    title: '系统通知'
+                    , content: '请填写保单浮动'
+                });
+                return;
+            }
+
+
+            if ($('#sjje').val() == null || $('#sjje').val() == '') {
+                layer.open({
+                    title: '系统通知'
+                    , content: '请填写实际金额'
+                });
+                return;
+            }
+
+            $('#signupForm').submit();
+
+        }
+    </script>
+
+    </body>
+</html>

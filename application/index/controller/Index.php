@@ -2,18 +2,20 @@
 namespace app\index\controller;
 
 use think\Db;
-
+use think\Session;
 class Index extends Base
 {
     public function index()
     {
+        $id = Session::get('admin_id');
+        $res = Db::table('t_business_user')->where(['id' => $id])->find();
 
+        $this->assign('user', json_encode($res));
         return $this->fetch();
     }
 
     public function index_i()
     {
-
         return $this->fetch();
     }
 
@@ -67,6 +69,27 @@ class Index extends Base
 
     }
 
+    public function add_user()
+    {
+
+        $qx_list = Db::table('role')->select();
+        $this->assign('qx_list', json_encode($qx_list));
+        return $this->fetch();
+    }
+
+    public function add_user_form()
+    {
+        $post = $_POST;
+
+        $post['user_password'] = md5($post['user_password']);
+        $res = Db::table('t_business_user')->insert($post);
+        if ($res == null) {
+            $this->ajaxError('错误');
+        } else {
+            $this->ajaxSuccess('成功');
+        }
+    }
+
 
     public function test()
     {
@@ -76,7 +99,6 @@ class Index extends Base
 
         $res = "12345111116";
         $table = <<<EOT
-        
 <table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">
     <tr><td>姓名</td><td>$res</td><td>发放</td><td>aaaaaaaa</td></tr>
     <tr><td>姓名</td><td>aaaaaaaa</td></tr>            
@@ -103,8 +125,8 @@ EOT;
     public function show_table($tableName)
     {
 
-        $res = Db::table('table_show')->where(['table_name' => $tableName, 'flag' => 1])->select();
-        return $res;
+//        $res = Db::table('table_show')->where(['table_name' => $tableName, 'flag' => 1])->select();
+//        return $res;
     }
 
     public function index2()
@@ -240,10 +262,5 @@ EOT;
 
         $this->redirect('Index/permis_index');
     }
-
-
-
-
-
 
 }

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>历史订单</title>
+
+    <!--data table-->
+    <link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- main content start-->
+    <div class="main-content">
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                历史订单
+            </h3>
+
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+
+                                <div class="space15"></div>
+                                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                    <thead>
+                                    <tr>
+
+                                        <th>ID</th>
+                                        <th>保单号</th>
+                                        <th>年度</th>
+                                        <th>企业名称</th>
+                                        <th>保险名称</th>
+                                        <th>购买人数</th>
+                                        <th>备注</th>
+                                        <th>创建时间</th>
+                                        <th>保单状态</th>
+                                        <th>详情</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {volist name="list" id="vo"}
+                                    <tr class="">
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.bill_no}</td>
+                                        <td>{$vo.year_no}</td>
+                                        <td>{$vo.org_name}</td>
+                                        <td>{$vo.insurance_name}</td>
+                                        <td>{$vo.buy_punm}</td>
+                                        <td>{$vo.insurance_remark}</td>
+                                        <td class="center">{$vo.create_date}</td>
+                                        <if condition="$vo.bill_flag eq 4">
+                                            <td class="center">已出单</td>
+                                        </if>
+
+                                        <td>
+                                            <a href="{:url('Insurance/staffInfo')}?bill_no={$vo.bill_no}">人员详情</a>
+
+                                            <a href="{:url('Insurance/insuranceDetails')}?bill_no={$vo.bill_no}">保单详情</a>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--data table-->
+<script type="text/javascript" src="__ADMINEX__js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+
+<!--script for editable table-->
+<script src="__ADMINEX__js/editable-table2.js"></script>
+
+<!-- END JAVASCRIPTS -->
+<script>
+    jQuery(document).ready(function () {
+        EditableTable.init();
+    });
+</script>
+
+</body>
+</html>

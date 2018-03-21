@@ -8,6 +8,7 @@
 
 namespace app\index\controller;
 
+use Upload\UploadFile;
 use think\Controller;
 use think\Db;
 use think\Request;
@@ -23,7 +24,8 @@ class Base extends Controller
         //权限控制
         $admin_id = Session::get('admin_id');
         if($admin_id == null){
-            $this->redirect('Login/index');
+            header("Location:" . url('Login/index'));
+            die;
         }
 
         //获得列表
@@ -76,6 +78,54 @@ class Base extends Controller
         );
         header('Content-Type:application/json; charset=utf-8');
         exit(json_encode($result, JSON_UNESCAPED_SLASHES));
+    }
+
+    public function upload()
+    {
+
+        if ($_FILES != '') {
+            //如果有文件上传 上传附件
+            return $this->_upload()[0];
+        }
+
+
+    }
+
+
+    // 文件上传
+    protected function _upload()
+    {
+        import('@.ORG.UploadFile');
+        //导入上传类
+        $upload = new UploadFile();
+        //设置上传文件大小
+        $upload->maxSize = -1;
+        //设置上传文件类型
+        $upload->allowExts = explode(',', 'jpg,mp4,txt,png,jpeg');
+        //设置附件上传目录
+        $upload->savePath = './Uploads/';
+        // 设置引用图片类库包路径
+        $upload->imageClassPath = '@.ORG.Image';
+        //设置上传文件规则
+        $upload->saveRule = 'uniqid';
+        //删除原图
+        $upload->thumbRemoveOrigin = true;
+        if (!$upload->upload()) {
+            //捕获上传异常
+            $this->error($upload->getErrorMsg());
+        } else {
+            //取得成功上传的文件信息
+            $uploadList = $upload->getUploadFileInfo();
+
+            import('@.ORG.Image');
+        }
+//        $model  = M('Photo');
+        //保存当前数据对象
+        $data['image'] = $_POST['image'];
+        $data['create_time'] = NOW_TIME;
+//        $list   = $model->add($data);
+
+        return $uploadList;
     }
 
 

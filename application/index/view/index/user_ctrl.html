@@ -45,9 +45,9 @@
                         <header class="panel-heading">
                             Dynamic Table
                             <span class="tools pull-right">
-                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                <a href="javascript:;" class="fa fa-times"></a>
-             </span>
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
                         </header>
                         <div class="panel-body">
                             <div class="adv-table">
@@ -90,8 +90,7 @@
                         <header class="panel-heading">
                             用户管理
                             <span class="tools pull-right">
-                                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                <a href="javascript:;" class="fa fa-times"></a>
+                                <a href="javascript:;" class="fa" v-on:click=add_user>增加用户</a>
                              </span>
                         </header>
                         <div class="panel-body">
@@ -155,7 +154,7 @@
 <script>
     var data = {$data};
     var edit_url = "{:url('Index/user_edit')}";
-
+    var add_url = "{:url('Index/add_user')}";
 
     console.log(data);
     new Vue({
@@ -166,6 +165,11 @@
         methods: {
             edit: function (event) {
                 window.location.href = edit_url + '?id=' + event;
+            },
+
+            add_user: function (event) {
+                window.location.href = add_url;
+
             }
         }
     })
