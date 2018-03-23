@@ -143,4 +143,34 @@ EOT;
         $this->assign('list', $list);
         return $this->fetch();
     }
+
+    public function insu_policy()
+    {
+        $list = Db::table('b_insurance_buy')->where('bill_flag<4')->select();
+
+
+        $this->assign('list', json_encode($list));
+        return $this->fetch();
+    }
+
+    public function insu_add()
+    {
+
+        return $this->fetch();
+    }
+
+    public function insu_detel()
+    {
+        $data = Db::table('b_insurance_buy')->where(['id' => $_GET['id']])->select()[0];
+        $user_list = Db::table('b_insurance_buy_detail')->where(['bill_no' => $data['bill_no']])->select();
+
+        $this->assign('data', json_encode($data));
+        $this->assign('user_list', json_encode($user_list));
+        return $this->fetch();
+    }
+
+    public function add_user()
+    {
+        $this->ajaxSuccess('a');
+    }
 }

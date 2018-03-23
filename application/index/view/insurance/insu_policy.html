@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>保单操作</title>
+
+    <!--dynamic table-->
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content">
+
+        <!--body wrapper start-->
+        <div class="wrapper" id="app">
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            保险单管理
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fb" v-on:click="add_bd">保单添加</a>
+                             </span>
+                        </header>
+
+
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table class="table table-hover" id="">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>年度</th>
+                                        <th>企业名称</th>
+                                        <th>保险名称</th>
+                                        <th>购买人数</th>
+                                        <th>保单状态</th>
+                                        <th>详情</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="gradeX" v-for="(val,id) in list">
+
+                                        <td>{{id+1}}</td>
+                                        <td>{{val.year_no}}</td>
+                                        <td>{{val.org_name}}</td>
+                                        <td>{{val.insurance_name}}</td>
+                                        <td>{{val.buy_punm}}</td>
+                                        <td class="center">{{val.bill_flag}}</td>
+                                        <td>
+                                            <a href="javascript:" v-on:click="go_detel(val.id)">查看详情</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<input id="table_url" value="{:url('Insurance/detail')}">
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript"
+        src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+<!-- layer -->
+<script src="__ADMINEX__/layer/layer.js"></script>
+<!-- END JAVASCRIPTS -->
+
+<script>
+    var list = {$list};
+    for (var i = 0; i < list.length; i++) {
+
+        switch (list[i].bill_flag) {
+            case 0:
+                list[i].bill_flag = '未提交';
+                break;
+            case 1:
+                list[i].bill_flag = '已提交';
+                break;
+            case 2:
+                list[i].bill_flag = '待确认';
+                break;
+            case 3:
+                list[i].bill_flag = '待付款';
+                break;
+            case 4:
+                list[i].bill_flag = '待出单';
+                break;
+            case 5:
+                list[i].bill_flag = '已出单';
+                break;
+        }
+
+    }
+    console.log(list);
+    var add_url = "{:url('Insurance/insu_add')}";
+    var detel_url = "{:url('Insurance/insu_detel')}";
+    new Vue({
+        el: "#app",
+        data: {
+            list: list
+        },
+        methods: {
+            add_bd: function () {
+                window.location.href = add_url;
+            },
+            go_detel: function (id) {
+                window.location.href = detel_url + '?id=' + id;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
