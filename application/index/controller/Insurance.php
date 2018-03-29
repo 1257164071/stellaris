@@ -171,6 +171,24 @@ EOT;
 
     public function add_user()
     {
-        $this->ajaxSuccess('a');
+
+        $this->ajaxSuccess('');
     }
+
+    public function get_pay()
+    {
+//        $core = new \Pay\Core(['transCode'=>'']);
+//        $core->toPay();
+        $pay = new \Wxpay\Weixinpay();
+        $order = array(
+            'body' => 'test',
+            'total_fee' => 1,
+            'out_trade_no' => strval(time()),
+            'product_id' => 1
+        );
+        $pay->pay($order);
+
+    }
+
+
 }
