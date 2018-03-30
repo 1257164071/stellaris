@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>保险类别管理</title>
+
+    <!--dynamic table-->
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+    <script type="text/javascript">
+    //全选
+    function DoCheck() {
+        var ch = document.getElementsByName("deleteid[]");
+        if (document.getElementsByName("allChecked")[0].checked == true) {
+            for (var i = 0; i < ch.length; i++) {
+                ch[i].checked = true;
+            }
+        } else {
+            for (var i = 0; i < ch.length; i++) {
+                ch[i].checked = false;
+            }
+        }
+    }
+   
+    </script>
+ 
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- main content start-->
+    <div class="main-content">
+
+        <!-- header section start-->
+        <!-- header section end-->
+
+        <!-- page heading start-->
+
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper" id="app">
+            <div style="display: none" class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Dynamic Table
+                            <span class="tools pull-right">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table class="display table table-bordered table-striped" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        
+                                        <th>ID</th>
+                                        <th>用户名</th>
+                                        <th>性别</th>
+                                        <th>所属企业</th>
+                                        <th class="hidden-phone">用户职位</th>
+                                        <th class="hidden-phone">所属管辖</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="gradeX">
+                                        <td>Trident</td>
+                                        <td>Internet
+                                            Explorer 4.0
+                                        </td>
+                                        <td>Win 95+</td>
+                                        <td class="center hidden-phone">4</td>
+                                        <td class="center hidden-phone">X</td>
+                                        <td class="center hidden-phone">X</td>
+                                        <td class="center hidden-phone">X</td>
+                                    </tr>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            保险类别管理
+                           
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                 <button type="button" tooltip="保险类别添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('Insuranceitem/add')}'"> <i class="fa fa-plus"></i> 添加保险类别信息
+                            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <form class="cmxform form-horizontal adminex-form" id="signupForm" method="post"
+                                      action="{:url('Insuranceitem/delmore')}" novalidate="novalidate" onSubmit= "return ret()">
+                                <table class="display table table-bordered" id="hidden-table-info">
+                                    <thead>
+
+                                    <tr>
+                                        <th><input type="checkbox"  name="allChecked" id="allChecked" onclick="DoCheck()"/>全选/反选</th>
+                                        <th>ID</th>
+                                        <th>险种类别代码</th>
+                                        <th class="hidden-phone">险种名称</th>
+                                        <th class="hidden-phone">最少人数</th>
+                                        <th class="hidden-phone">最多人数</th>
+                                        <th class="hidden-phone">购买类型</th>
+                                        <th class="hidden-phone">累计额度</th>
+                                        <th class="hidden-phone">基础/固额保险费</th>
+                                        <th class="hidden-phone">单价</th>
+                                       <!--  <th class="hidden-phone">固定保额</th> -->
+                                        <th class="hidden-phone">每200人增加保费价格</th>
+                                        <th class="hidden-phone">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                         
+                                   <!--  <form role="form" action="{:url('delmore')}" method="post"> -->
+                                    {volist name="iteminfo" id="data"}
+                                    <tr class="gradeX" v-for="(value, key) in list">
+                                        <td><input type="checkbox" id="choose" name="deleteid[]" value="{$data.id}" style="margin-left: 21px;"></td>
+                                        <td>{$data.id}</td>
+                                        <td>{$data.insurance_code}</td>
+                                        <td class="hidden-phone">{$data.insurance_name}</td>
+                                        <td class="center hidden-phone">{$data.min_pnum}</td>
+                                        <td class="center hidden-phone">{$data.max_pnum}</td>
+                                        <td class="center hidden-phone">
+                                        {if condition="$data['insurance_type'] eq 1"}
+                                        按人数购买
+                                        {elseif condition="$data['insurance_type'] eq 2"}
+                                        按固定保额购买
+                                        {else /}
+                                         按固定保额+增加人数购买
+                                        {/if}
+                                        </td>
+                                        <td class="center hidden-phone">{$data.insurance_quota}</td>
+                                        <td class="center hidden-phone">{$data.insurance_baseamt}</td>
+                                        <td class="center hidden-phone">{$data.insurance_price}</td>
+                                        <td class="center hidden-phone">{$data.insurance_raiseprice}</td>
+                                        <td class="center hidden-phone"><a href="{:url('edit',array('id'=>$data['id']))}">修改</a>
+                                        <a href="{:url('del',array('id'=>$data['id']))}"  onClick="return delcfm()">删除</a></td>
+                                    </tr>
+                                    {/volist}
+                                    <button type="submit" tooltip="保险类别批量删除" class="btn btn-danger" > 批量删除 
+                                    </button>
+                                    </tbody>
+                                </table>
+                                 </form>
+                               <script type="text/javascript">
+                                   //删除单条记录
+                                   function delcfm() {
+                                       if (confirm("您确认删除已选中的记录吗？")) {
+                                           return true;
+                                       };
+                                       return false;
+                                   }
+
+                                   //删除多条记录
+                                   function ret() {
+                                       if (confirm("您确认删除已选中的多条记录吗？")) {
+                                           return true;
+                                       };
+                                       return false;
+                                   }
+                               </script>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+        <!--body wrapper end-->
+    </div>
+    <!-- main content end-->
+</section>
+<!-- <input id="table_url" value="{:url('index/test')}"> -->
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript"
+        src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+<!-- layer -->
+<script src="__ADMINEX__/layer/layer.js"></script>
+
+</body>
+</html>

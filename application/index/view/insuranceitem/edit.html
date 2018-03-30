@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>内控管理系统</title>
+
+    <!--ios7-->
+
+    <link href="__ADMINEX__js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="__ADMINEX__js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="__ADMINEX__js/iCheck/skins/square/green.css" rel="stylesheet">
+    <link href="__ADMINEX__js/iCheck/skins/square/blue.css" rel="stylesheet">
+    <link href="__ADMINEX__js/iCheck/skins/square/yellow.css" rel="stylesheet">
+    <link href="__ADMINEX__js/iCheck/skins/square/purple.css" rel="stylesheet">
+
+
+    <!--multi-select-->
+
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script type="text/javascript">
+     
+    function showinfo(){
+    var v=document.getElementById("status").value;
+    var sm=document.getElementById("ljed");
+    var s=document.getElementById("dj");
+    var y=document.getElementById("jcge");
+    var ys=document.getElementById("xz");
+     
+    if(v==0){
+    sm.style.display="none";
+    s.style.display="none";
+    y.style.display="none";
+    ys.style.display="none";  
+    }else if(v==1){
+    sm.style.display="";
+    s.style.display="";
+    y.style.display="";
+    ys.style.display="none";
+    } else if(v==2){
+    s.style.display="none";
+    ys.style.display="none";    
+    sm.style.display="";
+    y.style.display="";
+    } else{
+    sm.style.display="";
+    y.style.display="";
+    ys.style.display="";
+    s.style.display="none";
+    } 
+    }
+    </script> -->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content">
+
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+
+            <div class="row" id="app">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            保险类别信息
+                            <span class="tools pull-right">
+                               
+                            <!--     <a class="fb" href="#" type="reset">重置</a> -->
+                                <a class="fb" href="{:url('Insuranceitem/index')}">返回</a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" id="signupForm" method="post"
+                                      action="{:url('Insuranceitem/edit')}" novalidate="novalidate">
+                                    <input type="hidden" name="id" id="id" value="{$itemoneinfo.id}">
+                                   <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">险种名称</label>
+                                        <div class="col-lg-10">
+                                         <input class="form-control" id="firstname" name="insurance_name"  v-model="role_name" type="text" value="{$itemoneinfo.insurance_name}">
+                                        </div>
+                                    </div>
+                                     <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">最少人数</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="min_pnum"
+                                                   v-model="role_name" type="text" value="{$itemoneinfo.min_pnum
+                                               }">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">最多人数</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="max_pnum"
+                                                   v-model="role_name" type="text" value="{$itemoneinfo.max_pnum
+                                               }">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                         <label class="col-md-2 col-sm-2 control-label" for="inputSuccess">购买类型</label>
+                                        <div class="col-md-6 col-sm-6">
+                                        <select class="form-control m-bot15" name="insurance_type" id="status" onchange="showinfo()">
+                                       <option value="0">---请选择购买类型---</option>
+                                        {volist name="typeseinfo" id="types"}
+                                          <option value="{$types.id
+                                               }"  {if condition="$itemoneinfo['insurance_type'] eq $types['id']"}selected="selected"{/if}> 
+                                        {$types.type_name}</option>
+                                       {/volist}
+                                        </select>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="form-group " style="display;" id="ljed">
+                                        <label for="firstname" class="control-label col-lg-2">累计额度</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="insurance_quota"
+                                                   v-model="role_name" type="text" value="{$itemoneinfo.insurance_quota
+                                               }">
+                                        </div>
+                                    </div>
+                                    <div class="form-group " style="display" id="jcge">
+                                        <label for="firstname" class="control-label col-lg-2">基础/固额保险费</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="insurance_baseamt"
+                                                   v-model="role_name" type="text" value="{$itemoneinfo.insurance_baseamt
+                                               }">
+                                        </div>
+                                    </div>
+                                    <div class="form-group " style="display" id="dj">
+                                        <label for="firstname" class="control-label col-lg-2">单价</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="insurance_price"
+                                                   v-model="role_name" type="text" value="{$itemoneinfo.insurance_price
+                                               }">
+                                        </div>
+                                    </div>
+                                    <!--  <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">固定保额</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="insurance_fixedamt"
+                                                   v-model="role_name" type="text">
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group " style="display" id="xz">
+                                        <label for="firstname" class="control-label col-lg-2">每200人增加保费价格</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" id="firstname" name="insurance_raiseprice"
+                                                   v-model="role_name" type="text" value="{$itemoneinfo.insurance_raiseprice
+                                               }">
+                                        </div>
+                                    </div>
+                                  
+                                    
+                                    <span class="tools pull-center" style="margin:0 auto;">
+                                          <button type="submit" style="margin: 0 auto；">
+                            保存信息</button> 
+                                   <!--  <a class="fb" href="#" v-on:click="submit">保存</a> --></span> 
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+        </div>
+        <!--body wrapper end-->
+
+    </div>
+    <!-- main content end-->
+</section>
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--ios7-->
+<script src="__ADMINEX__js/ios-switch/switchery.js"></script>
+<script src="__ADMINEX__js/ios-switch/ios-init.js"></script>
+
+<!--icheck -->
+<script src="__ADMINEX__js/iCheck/jquery.icheck.js"></script>
+<script src="__ADMINEX__js/icheck-init.js"></script>
+<script src="__ADMINEX__js/jquery-tags-input/jquery.tagsinput.js"></script>
+<script src="__ADMINEX__js/tagsinput-init.js"></script>
+<!--bootstrap input mask-->
+<script type="text/javascript" src="__ADMINEX__js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+<!-- layer -->
+<script src="__ADMINEX__/layer/layer.js"></script><!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+
+</body>
+</html>
