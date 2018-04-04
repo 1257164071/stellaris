@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.text{
+			width: 300px;
+			height:35px;
+		}
+		#content{
+			width: 90%;
+			margin: 0 auto;
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="content"><br>
+		<div><a href="{:url('index')}"><button>返回个人基本信息</button></a></div>
+		<h4>登录人基本信息修改
+		</h4>
+		<form action="{:url('update_sub')}" method='post' enctype='multipart/form-data'>
+			登录名 <input class="text" type="text" value="{$user.user_code}" name="user_code" ><br><br>
+			用户名 <input class="text" type="text" value="{$user.user_name}" name="user_name" ><br><br>
+			手机号 <input class="text" type="text" value="{$user.user_mobile}" name="user_mobile" ><br><br>
+			性别
+		    <input name="user_sex" type="radio" value="1" {if $user.user_sex == 1}checked="checked" {/if}/>男&nbsp;&nbsp;&nbsp;&nbsp;
+		    <input name="user_sex" type="radio" value="0" {if $user.user_sex == 0}checked="checked" {/if}/>女<br><br>
+			
+			用户头像 
+			<input name="file1" type="file">
+			<br><br>
+			 
+			 &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  value="提交" >
+			<input type="reset" ><br><br>
+		</form>
+		
+	</div>
+</body>
+</html>

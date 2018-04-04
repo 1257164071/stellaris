@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	/*imgtable*/
+	.imgtable{width:100%;border:solid 1px #cbcbcb; }
+	.imgtable th{background:url(../images/th.gif) repeat-x; height:34px; line-height:34px; border-bottom:solid 1px #b6cad2; text-indent:21px; text-align:left;}
+	.imgtable td{line-height:20px; text-indent:21px; border-right: dotted 1px #c7c7c7;}
+	.imgtable td img{margin:10px 20px 10px 0;}
+	.imgtable td p{color:#919191;}
+	.imgtable td i{font-style:normal; color:#ea2020;}
+	.imgtd{text-indent:0;}
+	.imgtable tbody tr.odd{background:#f5f8fa;}
+	.imgtable tbody tr:hover{background:#e5ebee;}
+	.text{
+			width: 300px;
+			height:35px;
+			font-size:18px;
+		}
+	</style>
+</head>
+<body><a href="{:url('add')}"><button style="height:41px;width:55px;font-size:18px;">增加</button></a>
+	<form action="{:url('search')}" action="post" style="float:right;">
+		<input class="text" type="text" placeholder="请输入搜索关键词！" name="search"> <input style="height:41px;width:50px;font-size:18px;" type="submit" value="搜索">
+	</form>
+	<table class="imgtable" style="min-width:1160px;">
+	    <thead>
+		    <tr>
+		    <th>编号</th>
+		    <th>查体机构名称</th>
+		    <th>查体机构电话</th>
+		    <th>查体机构地址</th>
+		    <th>创建时间</th>
+		    <th>编辑</th>
+		    </tr>
+	    </thead>
+	    <tbody>
+		    {volist name='check' id='check'}
+		    <tr>
+		    <td>{$check.id}</td>
+		    <td>{$check.check_name}</td>
+		    <td>{$check.check_tel}</td>
+		    <td>{$check.check_address}</td>
+		    <td>{$check.create_time}</td>
+		    <td>
+		        <a href="{:url('update',['id'=>$check.id])}">修改</a>/
+		        <a href="{:url('delete',['id'=>$check.id])}">删除</a>
+		    </td>
+		    </tr>
+		    {/volist}
+	    </tbody>
+    </table>
+</body>
+</html>

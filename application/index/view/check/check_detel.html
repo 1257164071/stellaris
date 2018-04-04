@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>体检单操作</title>
+
+    <!--dynamic table-->
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+    <link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section id="app">
+    <!-- left side start-->
+
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content">
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            体检单详情
+                            <span class="tools pull-right">
+                             </span>
+                        </header>
+
+                        <!--<div class="panel-body">-->
+                        <!--<div class="row">-->
+                        <!--<div class="row_i">-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>保单号</div>{{data.bill_no}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>年度</div>{{data.year_no}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>企业名名称</div>{{data.org_name}}</div>-->
+                        <!--</div>-->
+                        <!--<div  class="row_i">-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>公司地址</div>{{data.org_address}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>保险名称</div>{{data.insurance_name}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>购买人数</div>{{data.buy_punm}}</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="row_i">-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>保险类型</div>{{data.insurance_type}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>累计限额</div>{{data.insurance_quota}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>基础保险费</div>{{data.insurance_baseamt}}</div>-->
+                        <!--</div>-->
+                        <!--<div class="row_i">-->
+
+                        <!--<div class="col-md-4"><div class='col-md-4'>单价</div>{{data.insurance_price}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>每200人增加金额</div>{{data.insurance_raiseprice}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>保险总额度</div>{{data.insurance_amt}}</div>-->
+                        <!--</div>-->
+                        <!--<div class="row_i">-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>保单浮动</div>{{data.insurance_float}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>实际总额</div>{{data.insurance_real_amt}}</div>-->
+                        <!--<div class="col-md-4"><div class='col-md-4'>创建日期</div>{{data.create_date}}</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+
+                                <tbody>
+                                <tr>
+                                    <td><strong>体检单号</strong><br>{{data.bill_no}}</td>
+                                    <td><strong>年度</strong><br>{{data.year_no}}</td>
+                                    <!--<td><strong>保险类型</strong><br>{{data.insurance_type}}</td>-->
+                                    <td><strong>创建日期</strong><br>{{data.create_time}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td><strong>购买人数</strong><br>{{data.check_num}}</td>
+                                    <td><strong>单价</strong><br>{{data.check_price}}</td>
+                                    <!--<td><strong>每200人增加金额</strong><br>{{data.insurance_raiseprice}}</td>-->
+                                    <td><strong>保险总额度</strong><br>{{data.total_amt}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            保险单人员管理
+                            <span class="tools pull-right">
+                                <a href="#" class="fb" data-toggle="modal" data-target="#myModal">添加人员</a>
+                             </span>
+                        </header>
+
+
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table"
+                                       aria-describedby="dynamic-table_info">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>保单号</th>
+                                        <th>职工姓名</th>
+                                        <th>职工身份证</th>
+                                        <th>职工手机号</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_data">
+                                    <tr class="gradeX" v-for="(val,id) in list">
+
+                                        <td>{{id+1}}</td>
+                                        <td>{{val.bill_no}}</td>
+                                        <td>{{val.staff_name}}</td>
+                                        <td>{{val.staff_ic}}</td>
+                                        <td>{{val.staff_tel}}</td>
+                                        <td>
+                                            <a href="javascript:" v-on:click="del(val.id)">删除</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加人员</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="display table table-bordered table-striped dataTable" id="dynamic-table"
+                           aria-describedby="dynamic-table_info">
+                        <tr>
+                            <td>职工姓名</td>
+                            <td><input class="form-control" type="text" v-model="add_user_data.staff_name"></td>
+                        </tr>
+                        <tr>
+                            <td>身份证号</td>
+                            <td><input class="form-control" type="text" v-model="add_user_data.staff_ic">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>电话号码</td>
+                            <td><input class="form-control" type="text" v-model="add_user_data.staff_tel"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
+                    <button type="button" class="btn btn-primary" v-on:click="pull_user_data">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</section>
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript"
+        src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+<!-- layer -->
+<script src="__ADMINEX__/layer/layer.js"></script>
+<!-- END JAVASCRIPTS -->
+
+<script>
+    var data = {$data};
+    var user_list = {$user_list};
+    switch (data.bill_flag) {
+        case 0:
+            data.bill_flag = '未提交';
+            break;
+        case 1:
+            data.bill_flag = '已提交';
+            break;
+        case 2:
+            data.bill_flag = '待确认';
+            break;
+        case 3:
+            data.bill_flag = '待付款';
+            break;
+        case 4:
+            data.bill_flag = '待出单';
+            break;
+        case 5:
+            data.bill_flag = '已出单';
+            break;
+    }
+
+    //增加用户提交
+
+    var add_user_url = "{:url('Check/add_user')}";
+    new Vue({
+        el: "#app",
+        data: {
+            data: data,
+            list: user_list,
+            add_user_data: {},
+        },
+        methods: {
+
+            del: function (id) {
+                $.ajax({
+                    url: "{:url('Check/del_user')}",
+                    type: "POST",
+                    data: {
+                        id: id
+                    },
+                    success: function (res) {
+                        if (res.flag == 'Success') {
+                            layer.confirm('成功', {
+                                btn: ['确定'] //可以无限个按钮
+
+                            }, function (index, layero) {
+                                window.location.reload();
+                            });
+                            return;
+                        }
+                        layer.open({
+                            title: '系统通知'
+                            , content: '出现内部错误'
+                        });
+                    },
+                    error: function (res) {
+                        layer.open({
+                            title: '系统通知'
+                            , content: '服务器连接失败'
+                        });
+                    }
+                })
+            },
+            pull_user_data: function () {
+                var user_data = this.add_user_data;
+                user_data.bill_no = data.bill_no
+
+                console.log(user_data);
+                $.ajax({
+                    url: add_user_url,
+                    type: "POST",
+                    data: user_data,
+                    success: function (res) {
+                        if (res.flag == 'Success') {
+                            layer.open({
+                                content: '成功',
+                                yes: function (index, layero) {
+                                    //do something
+
+                                    location.reload();
+
+                                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                                }
+                            });
+
+                            return;
+                        }
+                        layer.open({
+                            title: '系统通知'
+                            , content: '出现内部错误'
+                        });
+                    },
+                    error: function (res) {
+                        layer.open({
+                            title: '系统通知'
+                            , content: '服务器连接失败'
+                        });
+                    }
+                })
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

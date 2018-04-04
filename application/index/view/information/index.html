@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		ul li{
+			list-style: none;
+		}
+		#content{
+			width: 90%;
+			margin: 0 auto;
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="content"><br>
+		<div><a href="{:url('update')}"><button>修改个人基本信息</button></a></div>
+		<h4>登录人基本信息</h4>
+		<ul>
+			<li>登录名：{$user.user_code}</li><br>
+			<li>用户名：{$user.user_name}</li><br>
+			<li>手机号：{$user.user_mobile}</li><br>
+			<li>性别：
+			{if $user.user_sex}
+			男
+			{else}
+			女
+			{/if}
+			</li><br>
+			
+			<li>所属企业：{$org.org_name}</li><br>
+			<li>用户职位：{$user_post.post_name}</li><br>
+			<li>所属管辖：{$gov.gov_name}</li><br>
+			<li>用户头像：<img src="/{$user.img_path}" width="100px" height="100px"  alt="用户头像">
+			</li><br><br>
+		</ul>
+	</div>
+</body>
+</html>

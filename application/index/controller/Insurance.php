@@ -7,9 +7,10 @@
  */
 
 namespace app\index\controller;
-
+use think\session;
 use think\Controller;
 use think\Db;
+
 
 class Insurance extends Base
 {
@@ -169,12 +170,96 @@ EOT;
         return $this->fetch();
     }
 
+    //添加入保人员名单
     public function add_user()
     {
+        //$this->log_write($_POST);
+        $re=Db::name('b_insurance_buy_detail')->insert($_POST);
+        if($re){
+            $this->ajaxSuccess('添加成功');
+        }else{
+            $this->ajaxError('添加失败');
+        }
 
-        $this->ajaxSuccess('');
     }
 
+    //自定义写日志的函数
+    public function log_write($msg){
+        $data = date('Y-m-d H:i:s',time())."\r\n";
+        if(is_array($msg)){
+            $msg = var_export($msg,true);
+        }
+        $data .= $msg."\r\n";
+        $file = 'log.txt';
+        file_put_contents($file,$data,FILE_APPEND);
+    }
+
+    public function ajax_insu_add(){
+        //接收人员id
+        $id=Session::get('admin_id');
+        //接收投保人数
+        $pnums=$_POST['buy_punm'];
+        //保单备注
+
+//        $this->log_write($_POST);die;
+
+        if(!in_array('insurance_remark',$_POST)){
+            $insurance_remark='';
+        }else{
+            $insurance_remark = $_POST['insurance_remark'];
+        }
+
+        $org_id=Db::table('t_business_user')->where("id='{$id}'")->find()['org_id'];
+        $businessInfo=Db::table('t_business_info')->where("id='{$org_id}'")->find();
+        $bid=$businessInfo['industry'];
+        $info=Db::table('b_insurance_item')->where("bid='{$bid}' and min_pnum<'{$pnums}' and max_pnum>='{$pnums}'")->find();
+
+        if($info['insurance_type']==1){
+            //按人数购买
+            $insurance_amt=$info['insurance_baseamt']+$info['insurance_price']*$pnums;
+        }elseif($info['insurance_type']==2){
+            //按固定保额购买
+            $insurance_amt=$info['insurance_baseamt'];
+        }else{
+            //固定保额+增加人数购买
+            $a=$pnums-1000;
+            $num=$a/200;
+            $insurance_amt=$info['insurance_baseamt']+$num*$info['insurance_raiseprice'];
+        }
+
+        $arr=array(
+            'insurance_remark'=>$insurance_remark,
+            'bill_no'=>date('YmdHis').rand(10000000,99999999),
+            'year_no'=>date("Y",time()),
+            'org_code'=>$businessInfo['org_code'],
+            'org_name'=>$businessInfo['org_name'],
+            'org_address'=>$businessInfo['business_address'],
+            //'org_spp'=>$businessInfo['image_path'],
+            'insurance_name'=>$info['insurance_name'],
+            'insurance_code'=>$info['insurance_code'],
+            'min_pnum'=>$info['min_pnum'],
+            'max_pnum'=>$info['max_pnum'],
+            'buy_punm'=>$pnums,
+            'insurance_type'=>$info['insurance_type'],
+            'insurance_quota'=>$info['insurance_quota'],
+            'insurance_baseamt'=>$info['insurance_baseamt'],
+            'insurance_price'=>$info['insurance_price'],
+            'insurance_raiseprice'=>$info['insurance_raiseprice'],
+            'insurance_amt'=>$insurance_amt,
+//            'insurance_float'=>'',
+//            'insurance_real_amt'=>'',
+            'bill_flag'=>0,
+            'create_date'=>date('Y-m-d H:i:s',time()),
+        );
+
+        $re=Db::table('b_insurance_buy')->insert($arr);
+        if($re){
+            $this->ajaxSuccess();
+        }else{
+            $this->ajaxError();
+        }
+
+    }
     public function get_pay()
     {
 //        $core = new \Pay\Core(['transCode'=>'']);

@@ -1,0 +1,185 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="ThemeBucket">
+	<link rel="shortcut icon" href="#" type="image/png">
+
+	<title>保单操作</title>
+
+	<!--dynamic table-->
+	<link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+	<link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+	<link href="__ADMINEX__css/style.css" rel="stylesheet">
+	<link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="__ADMINEX__js/html5shiv.js"></script>
+	<script src="__ADMINEX__js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+	<!-- left side start-->
+
+	<!-- left side end-->
+
+	<!-- main content start-->
+	<div class="main-content">
+
+		<!--body wrapper start-->
+		<div class="wrapper" id="app">
+			<div class="row">
+				<div class="col-sm-12">
+					<section class="panel">
+						<header class="panel-heading">
+							修改企业基本信息
+							<span class="tools pull-right">
+								<a href="javascript:" onclick="$('#signupForm').submit()" class="fb"  >保存</a>
+
+                                <a href="{:url('index')}" class="fb"  >返回</a>
+                             </span>
+						</header>
+
+
+						<div class="panel-body">
+							<div class="adv-table">
+								<div id="content"><br>
+
+
+									<div class="from">
+									<form class="cmxform form-horizontal adminex-form" id="signupForm" method="post" action="{:url('update_sub')}" novalidate="novalidate" enctype='multipart/form-data'>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">公司名称</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.org_name}" name="org_name" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">公司地址</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.business_address}" name="business_address" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">公司Email</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.business_email}" name="business_email" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">法人代表</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.legal_person}" name="legal_person" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">法人生日</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.birthday}" id="test1" name="birthday" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">法人电话</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.legal_person_phone}" name="legal_person_phone" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">经营期限</label>
+											<div class="col-lg-10">
+												{$org.time_limit1} 至 <input class="form-control valid" id="" type="text" value="{$org.time_limit2}" name="time_limit2" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">安全负责人电话</label>
+											<div class="col-lg-10">
+												<input class="form-control valid" type="text" value="{$org.safety_gear_person_mobile}" name="safety_gear_person_mobile" >
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<label for="username" class="control-label col-lg-2">经营内容</label>
+											<div class="col-lg-10">
+												<textarea name="content" class="form-control" id="" cols="30" rows="10">{$org.manage_content}</textarea>											</div>
+										</div>
+
+
+									</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+		<!--body wrapper end-->
+
+		<!--footer section start-->
+
+		<!--footer section end-->
+
+
+	</div>
+	<!-- main content end-->
+</section>
+
+<input id="table_url" value="{:url('Insurance/detail')}">
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript"
+		src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<script src="__ADMINEX__/layer/layer.js"></script>
+<script src="__ADMINEX__/layer/laydate.js"></script>
+
+<script>
+
+
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#test1'
+    });
+
+    laydate.render({
+        elem: '#test2'
+    });
+</script>
+</body>
+</html>

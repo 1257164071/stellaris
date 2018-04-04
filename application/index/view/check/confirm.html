@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>收款确认</title>
+
+
+    <link href="__ADMINEX__css/style.css" rel="stylesheet">
+    <link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__ADMINEX__css/bootstrap-fileupload.min.css"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__ADMINEX__js/html5shiv.js"></script>
+    <script src="__ADMINEX__js/respond.min.js"></script>
+
+
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- left side start-->
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content">
+
+        <!-- header section end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            收款确认
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <form class="cmxform form-horizontal adminex-form" id="signupForm" method="post"
+                                      enctype="multipart/form-data"
+                                      action="{:url('Check/confirmShouKuan')}?bill_no={$bill_no}">
+                                    <div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">订单号</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="firstname" name="" type="text" readonly
+                                                   value="{$bill_no}"/>
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group ">
+                                        <label for="firstname" class="control-label col-lg-2">出单图片*</label>
+                                        <div class="col-lg-10">
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="fileupload-new thumbnail"
+                                                     style="width: 200px; height: 150px;">
+                                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
+                                                         alt="">
+                                                </div>
+                                                <div class="fileupload-preview fileupload-exists thumbnail"
+                                                     style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                <div>
+                                                   <span class="btn btn-default btn-file">
+                                                   <span class="fileupload-new"><i
+                                                           class="fa fa-paper-clip"></i> 选择图片</span>
+                                                   <span class="fileupload-exists"><i
+                                                           class="fa fa-undo"></i> 更改图片</span>
+                                                   <input type="file" name="file" class="default">
+                                                   </span>
+                                                    <a href="#" class="btn btn-danger fileupload-exists"
+                                                       data-dismiss="fileupload"><i class="fa fa-trash"></i> 删除</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-primary" type="submit">确认</button>
+                                            <button class="btn btn-default" style="margin-left: 100px"
+                                                    onclick="window.history.go(-1)" type="button">取消
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+        <!--footer section start-->
+
+        <!--footer section end-->
+
+
+    </div>
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<script src="__ADMINEX__js/validation-init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<!--file upload-->
+<script type="text/javascript" src="__ADMINEX__js/bootstrap-fileupload.min.js"></script>
+
+</body>
+</html>

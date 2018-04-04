@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.text{
+			width: 300px;
+			height:35px;
+			font-size:18px;
+		}
+	</style>
+</head>
+<body>
+<div><a href="{:url('index')}"><button style="height:41px;width:155px;font-size:18px;">返回基本信息</button></a></div>
+		<h4>基本信息增加
+		</h4>
+	<form action="{:url('insert')}" method="post" enctype='multipart/form-data'>
+	<input type="hidden" name="id" value="">
+	查询机构名称<input class="text" type="text" name="name" value=""><br><br>
+	查询机构电话<input class="text" type="text" name="tel" value=""><br><br>
+	查询机构地址<input class="text" type="text" name="address" value=""><br><br><input type="hidden" name="time" value="">
+	<input style="height:41px;width:55px;font-size:18px;" type="submit" value="提交">
+	<input style="height:41px;width:55px;font-size:18px;" type="reset" value="取消">
+
+
+
+	</form>
+</body>
+</html>
