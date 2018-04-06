@@ -1,41 +1,113 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title></title>
-	<style>
-		ul li{
-			list-style: none;
-		}
-		#content{
-			width: 90%;
-			margin: 0 auto;
-			background-color: #fff;
-		}
-	</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="ThemeBucket">
+	<link rel="shortcut icon" href="#" type="image/png">
+
+	<title>保单操作</title>
+
+	<!--dynamic table-->
+	<link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+	<link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+	<link href="__ADMINEX__css/style.css" rel="stylesheet">
+	<link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="__ADMINEX__js/html5shiv.js"></script>
+	<script src="__ADMINEX__js/respond.min.js"></script>
+	<![endif]-->
 </head>
-<body>
-	<div id="content"><br>
-		<div><a href="{:url('update')}"><button>修改个人基本信息</button></a></div>
-		<h4>登录人基本信息</h4>
-		<ul>
-			<li>登录名：{$user.user_code}</li><br>
-			<li>用户名：{$user.user_name}</li><br>
-			<li>手机号：{$user.user_mobile}</li><br>
-			<li>性别：
-			{if $user.user_sex}
-			男
-			{else}
-			女
-			{/if}
-			</li><br>
-			
-			<li>所属企业：{$org.org_name}</li><br>
-			<li>用户职位：{$user_post.post_name}</li><br>
-			<li>所属管辖：{$gov.gov_name}</li><br>
-			<li>用户头像：<img src="/{$user.img_path}" width="100px" height="100px"  alt="用户头像">
-			</li><br><br>
-		</ul>
+
+<body class="sticky-header">
+
+<section>
+	<!-- left side start-->
+
+	<!-- left side end-->
+
+	<!-- main content start-->
+	<div class="main-content">
+
+		<!--body wrapper start-->
+		<div class="wrapper" id="app">
+			<div class="row">
+				<div class="col-sm-12">
+					<section class="panel">
+						<header class="panel-heading">
+							企业基本信息
+							<span class="tools pull-right">
+                                <a href="{:url('update')}" class="fb"  >修改个人基本信息</a>
+                             </span>
+						</header>
+
+
+						<div class="panel-body">
+							<div class="adv-table">
+								<div id="content"><br>
+									<ul>
+										<li>登录名：{$user.user_code}</li><br>
+										<li>用户名：{$user.user_name}</li><br>
+										<li>手机号：{$user.user_mobile}</li><br>
+										<li>性别：
+											{if $user.user_sex}
+											男
+											{else}
+											女
+											{/if}
+										</li><br>
+
+										<li>所属企业：{$org.org_name}</li><br>
+										<li>用户职位：{$user_post.post_name}</li><br>
+										<li>所属管辖：{$gov.gov_name}</li><br>
+										<li>用户头像：<img src="/{$user.img_path}" width="100px" height="100px"  alt="用户头像">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+		<!--body wrapper end-->
+
+		<!--footer section start-->
+
+		<!--footer section end-->
+
+
 	</div>
+	<!-- main content end-->
+</section>
+
+<input id="table_url" value="{:url('Insurance/detail')}">
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript"
+		src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+
+
 </body>
 </html>

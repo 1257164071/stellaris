@@ -1,32 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-	<style>
-		.text{
-			width: 300px;
-			height:35px;
-			font-size:18px;
-		}
-	</style>
-</head>
-<body>
-<div><a href="{:url('index')}"><button style="height:41px;width:155px;font-size:18px;">返回基本信息</button></a></div>
-		<h4>基本信息修改
-		</h4>
-	<form action="{:url('update_sub')}" method="post" enctype='multipart/form-data'>
-	<input class="text" type="hidden" name="id" value="{$list.id}">
-	保险公司名称 <input class="text" class="text" type="text" name="name" value="{$list.company_name}"><br><br>
-	保险公司电话 <input class="text" class="text" type="text" name="tel" value="{$list.company_tel}"><br><br>
-	保险公司地址 <input class="text" class="text" type="text" name="address" value="{$list.company_address}"><br><br>
-	<inputstyle="height:41px;width:55px;font-size:18px;" type="submit" value="提交">
-	<inputstyle="height:41px;width:55px;font-size:18px;" type="reset" value="取消">
-
-
-	</form>
-</body>
-</html>
 
 
 

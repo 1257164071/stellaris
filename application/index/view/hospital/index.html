@@ -1,56 +1,123 @@
+
+
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="UTF-8">
-	<title></title>
-	<style>
-	/*imgtable*/
-	.imgtable{width:100%;border:solid 1px #cbcbcb; }
-	.imgtable th{background:url(../images/th.gif) repeat-x; height:34px; line-height:34px; border-bottom:solid 1px #b6cad2; text-indent:21px; text-align:left;}
-	.imgtable td{line-height:20px; text-indent:21px; border-right: dotted 1px #c7c7c7;}
-	.imgtable td img{margin:10px 20px 10px 0;}
-	.imgtable td p{color:#919191;}
-	.imgtable td i{font-style:normal; color:#ea2020;}
-	.imgtd{text-indent:0;}
-	.imgtable tbody tr.odd{background:#f5f8fa;}
-	.imgtable tbody tr:hover{background:#e5ebee;}
-	.text{
-			width: 300px;
-			height:35px;
-			font-size:18px;
-		}
-	</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="ThemeBucket">
+	<link rel="shortcut icon" href="#" type="image/png">
+
+	<title>管理</title>
+
+	<!--dynamic table-->
+	<link href="__ADMINEX__js/advanced-datatable/css/demo_page.css" rel="stylesheet"/>
+	<link href="__ADMINEX__js/advanced-datatable/css/demo_table.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__ADMINEX__js/data-tables/DT_bootstrap.css"/>
+
+	<link href="__ADMINEX__css/style.css" rel="stylesheet">
+	<link href="__ADMINEX__css/style-responsive.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="__ADMINEX__js/html5shiv.js"></script>
+	<script src="__ADMINEX__js/respond.min.js"></script>
+	<![endif]-->
 </head>
-<body><a href="{:url('add')}"><button style="height:41px;width:55px;font-size:18px;">增加</button></a>
-	<form action="{:url('search')}" action="post" style="float:right;">
-		<input class="text" type="text" placeholder="请输入搜索关键词！" name="search"> <input style="height:41px;width:50px;font-size:18px;" type="submit" value="搜索">
-	</form>
-	<table class="imgtable" style="min-width:1160px;">
-	    <thead>
-		    <tr>
-		    <th>编号</th>
-		    <th>查体机构名称</th>
-		    <th>查体机构电话</th>
-		    <th>查体机构地址</th>
-		    <th>创建时间</th>
-		    <th>编辑</th>
-		    </tr>
-	    </thead>
-	    <tbody>
-		    {volist name='check' id='check'}
-		    <tr>
-		    <td>{$check.id}</td>
-		    <td>{$check.check_name}</td>
-		    <td>{$check.check_tel}</td>
-		    <td>{$check.check_address}</td>
-		    <td>{$check.create_time}</td>
-		    <td>
-		        <a href="{:url('update',['id'=>$check.id])}">修改</a>/
-		        <a href="{:url('delete',['id'=>$check.id])}">删除</a>
-		    </td>
-		    </tr>
-		    {/volist}
-	    </tbody>
-    </table>
+
+<body class="sticky-header">
+
+<section>
+	<!-- main content start-->
+	<div class="main-content">
+
+		<!-- header section start-->
+		<!-- header section end-->
+
+		<!-- page heading start-->
+
+		<!-- page heading end-->
+
+		<!--body wrapper start-->
+		<div class="wrapper" id="">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<section class="panel">
+						<header class="panel-heading">
+							保险公司管理
+							<span class="tools pull-right">
+                                <a href="{:url('add')}" class="fb">增加</a>
+                             </span>
+						</header>
+						<div class="panel-body">
+							<div class="adv-table">
+								<table class="display table table-bordered" id="editable-sample">
+									<thead>
+									<tr>
+										<th>编号</th>
+										<th>查体机构名称</th>
+										<th>查体机构电话</th>
+										<th>查体机构地址</th>
+										<th>创建时间</th>
+										<th>编辑</th>
+									</tr>
+									</thead>
+									<tbody>
+
+									{volist name='check' id='check'}
+									<tr>
+										<td>{$check.id}</td>
+										<td>{$check.check_name}</td>
+										<td>{$check.check_tel}</td>
+										<td>{$check.check_address}</td>
+										<td>{$check.create_time}</td>
+										<td>
+											<a href="{:url('update',['id'=>$check.id])}">修改</a>/
+											<a href="{:url('delete',['id'=>$check.id])}">删除</a>
+										</td>
+									</tr>
+									{/volist}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+
+		</div>
+		<!--body wrapper end-->
+	</div>
+	<!-- main content end-->
+</section>
+<input id="table_url" value="{:url('index/test')}">
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="__ADMINEX__js/jquery-1.10.2.min.js"></script>
+<script src="__ADMINEX__js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="__ADMINEX__js/jquery-migrate-1.2.1.min.js"></script>
+<script src="__ADMINEX__js/bootstrap.min.js"></script>
+<script src="__ADMINEX__js/modernizr.min.js"></script>
+<script src="__ADMINEX__js/jquery.nicescroll.js"></script>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript"
+		src="__ADMINEX__js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__ADMINEX__js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="__ADMINEX__js/dynamic_table_init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="__ADMINEX__js/scripts.js"></script>
+<script src="__ADMINEX__js/Vue2.5.16.js"></script>
+
+<!-- layer -->
+<script src="__ADMINEX__/layer/layer.js"></script>
+
 </body>
 </html>
+
